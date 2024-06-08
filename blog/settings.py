@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Local applications
-    'app.Apps.AppConfig',
+    'app.apps.AppConfig',
     # Installed applications
     'graphene_django',
     # Django default
@@ -126,3 +126,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+GRAPHENE = {
+    "SCHEMA": "app.schema.schema"
+}

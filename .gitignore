@@ -1,0 +1,2 @@
+# The database should not go to VCS
+db.sqlite3

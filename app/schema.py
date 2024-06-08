@@ -8,13 +8,13 @@ from .models import *
 
 class PostType(DjangoObjectType):
     class Meta:
-        models = Post
+        model = Post
         fields = '__all__'
 
 
 class AuthorType(DjangoObjectType):
     class Meta:
-        models = Author
+        model = Author
         fields = '__all__'
 
 
@@ -116,6 +116,7 @@ class DeletePost(graphene.Mutation):
 
 class Query(graphene.ObjectType):
     posts = graphene.List(PostType)
+    post = graphene.Field(PostType, id=graphene.ID(required=True))
     authors = graphene.List(AuthorType)
 
     def resolve_posts(self, info):
@@ -127,6 +128,20 @@ class Query(graphene.ObjectType):
         :return: All post objects from the database
         """
         return Post.objects.all()
+
+    def resolve_post(self, info, id):
+        """
+        The resolve_post function is a resolver. It’s responsible for retrieving a single post from the database and returning them to GraphQL.
+
+        :param self: Refer to the current instance of a class
+        :param info: Pass along the context of the query
+        :return: A single post with a certain id from the database
+        """
+        try:
+            return Post.objects.get(pk=id)
+        except Post.DoesNotExist:
+            return None
+
 
     def resolve_authors(self, info):
         """
