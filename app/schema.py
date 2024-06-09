@@ -18,6 +18,30 @@ class AuthorType(DjangoObjectType):
         fields = '__all__'
 
 
+class CreateAuthor(graphene.Mutation):
+    class Arguments:
+        name = graphene.String(required=True)
+
+    author = graphene.Field(AuthorType)
+
+    def mutate(self, info, name):
+        """
+        The mutate function is the function that will be called when a client
+        makes a request to this mutation. It takes in three arguments:
+        self, info and name. The first two are required by all mutations;
+        the last one is the argument we defined in our CreateAuthorInput class.
+
+        :param self: Access the object's attributes and methods
+        :param info: Access the context of the request
+        :param name: Create a new author with the name provided
+        :return: A createpost object
+        """
+
+        author = Author(name=name)
+        author.save()
+        return CreateAuthor(author=author)
+
+
 class CreatePost(graphene.Mutation):
     class Arguments:
         title = graphene.String(required=True)
@@ -29,9 +53,9 @@ class CreatePost(graphene.Mutation):
     def mutate(self, info, title, content, author_id):
         """
         The mutate function is the function that will be called when a client
-        makes a request to this mutation. It takes in four arguments:
-        self, info, title and content. The first two are required by all mutations;
-        the last two are the arguments we defined in our CreatePostInput class.
+        makes a request to this mutation. It takes in five arguments:
+        self, info, title and content and author_id. The first two are required by all mutations;
+        the last three are the arguments we defined in our CreatePostInput class.
 
         :param self: Access the object's attributes and methods
         :param info: Access the context of the request
