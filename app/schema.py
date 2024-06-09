@@ -50,8 +50,8 @@ class CreatePost(graphene.Mutation):
 class UpdatePost(graphene.Mutation):
     class Arguments:
         id = graphene.ID(required=True)
-        title = graphene.String(required=True)
-        content = graphene.String(required=True)
+        title = graphene.String()
+        content = graphene.String()
 
     post = graphene.Field(PostType)
 
@@ -141,7 +141,6 @@ class Query(graphene.ObjectType):
             return Post.objects.get(pk=id)
         except Post.DoesNotExist:
             return None
-
 
     def resolve_authors(self, info):
         """
