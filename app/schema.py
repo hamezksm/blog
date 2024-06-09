@@ -145,7 +145,9 @@ class Query(graphene.ObjectType):
 
     def resolve_posts(self, info):
         """
-        The resolve_posts function is a resolver. It’s responsible for retrieving the posts from the database and returning them to GraphQL.
+        The resolve_posts function is a resolver. It’s responsible
+        for retrieving the posts from the database and returning
+        them to GraphQL.
 
         :param self: Refer to the current instance of a class
         :param info: Pass along the context of the query
@@ -155,7 +157,9 @@ class Query(graphene.ObjectType):
 
     def resolve_post(self, info, id):
         """
-        The resolve_post function is a resolver. It’s responsible for retrieving a single post from the database and returning them to GraphQL.
+        The resolve_post function is a resolver. It’s responsible 
+        for retrieving a single post from the database and returning
+        them to GraphQL.
 
         :param self: Refer to the current instance of a class
         :param info: Pass along the context of the query
@@ -168,7 +172,9 @@ class Query(graphene.ObjectType):
 
     def resolve_authors(self, info):
         """
-        The resolve_authors function is a resolver. It’s responsible for retrieving the data that will be returned as part of an execution result.
+        The resolve_authors function is a resolver. It’s responsible 
+        for retrieving the data that will be returned as part of an 
+        execution result.
 
         :param self: Pass the instance of the object to be used
         :param info: Pass information about the query to the resolver
@@ -181,6 +187,7 @@ class Mutation(graphene.ObjectType):
     create_post = CreatePost.Field()
     update_post = UpdatePost.Field()
     delete_post = DeletePost.Field()
+    create_author = CreateAuthor.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
