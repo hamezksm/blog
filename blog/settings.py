@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Local applications
     'app.apps.AppConfig',
+    'authentication.apps.AuthenticationConfig',
     # Installed applications
     'graphene_django',
     # Django default
@@ -129,5 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 GRAPHENE = {
-    "SCHEMA": "app.schema.schema"
+    "SCHEMA": "app.schema.schema",
+    "SCHEMA": "authentication.schema.schema"
 }
